@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -53,6 +54,14 @@ public class Player : MonoBehaviour
             bulletScript.targetVector = transform.right;
             /* bulletScript.speedMultiplier = thrust*thrustForce + 1; */
             /* Debug.Log(bulletScript.speedMultiplier); */
+        }
+    }
+
+    private void OnCollisionEnter(Collision coliision) {
+        if(coliision.gameObject.CompareTag("Enemy")){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        } else {
+            Debug.Log("Colision con OVNI...");
         }
     }
 }
