@@ -1,8 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +13,7 @@ public class Player : MonoBehaviour
 
 
     public GameObject gun, bulletPrefab, meteorAtackPoint, newPlayer;
+    public TextMeshProUGUI text;
 
 
     private Rigidbody rigid; // Private impide modificar el valor del copmponente desde el editopr de Unity (Desde el scrript)
@@ -22,7 +21,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-
+        text = FindObjectOfType<TextMeshProUGUI>();
         // Meteoritos
     }
 
@@ -70,11 +69,11 @@ public class Player : MonoBehaviour
     }
 
     private void checkOutOfBounds(){
-        if(Mathf.Abs(transform.position.x) > 10)
+        if(Mathf.Abs(transform.position.x) > 9.25)
         {
             transform.position = new Vector3(-transform.position.x, transform.position.y);
         }
-        if (Mathf.Abs(transform.position.y) > 4.77)
+        if (Mathf.Abs(transform.position.y) > 5)
         {
             transform.position = new Vector3(transform.position.x, -transform.position.y);
         }

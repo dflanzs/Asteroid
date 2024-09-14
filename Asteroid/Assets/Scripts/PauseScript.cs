@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -48,13 +46,13 @@ public class PauseScript : MonoBehaviour
 
     public void restart(){
         gamePaused = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         PauseButton.SetActive(true);
         PauseMenu.SetActive(false); 
         ResumeButton.SetActive(false);
         ResetButton.SetActive(false);
         QuitButton.SetActive(false);
         pauseImage.SetActive(false);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void quit(){

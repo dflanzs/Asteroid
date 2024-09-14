@@ -920,6 +920,8 @@ MonoBehaviour:
   gun: {fileID: 1576937551}
   bulletPrefab: {fileID: 5865762002758847173, guid: 39e93dd25301715ddbcdc2feb4b55ca6, type: 3}
   meteorAtackPoint: {fileID: 543581740}
+  newPlayer: {fileID: 0}
+  text: {fileID: 0}
 --- !u!136 &954737848
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1419,14 +1421,14 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
+  m_fontSize: 44.75
   m_fontSizeBase: 50
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
+  m_HorizontalAlignment: 2
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -2108,7 +2110,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 8}
-  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_LocalScale: {x: 2.7500246, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -2129,7 +2131,7 @@ MonoBehaviour:
   spawnRatePerMinute: 30
   spawnIncrement: 1
   targetVector: {x: 0, y: 0, z: 0}
-  xLimit: 8
+  xLimit: 10
   meteorPrefab: {fileID: 2400104444239387302, guid: b2cd470bc2ba667ad8dff11d14603c99, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
