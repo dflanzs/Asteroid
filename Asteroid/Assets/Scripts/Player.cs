@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,7 +14,7 @@ public class Player : MonoBehaviour
     public float rotationSpeed = 120f;
 
 
-    public GameObject gun, bulletPrefab, meteorAtackPoint;
+    public GameObject gun, bulletPrefab, meteorAtackPoint, newPlayer;
 
 
     private Rigidbody rigid; // Private impide modificar el valor del copmponente desde el editopr de Unity (Desde el scrript)
@@ -55,6 +56,8 @@ public class Player : MonoBehaviour
             /* bulletScript.speedMultiplier = thrust*thrustForce + 1; */
             /* Debug.Log(bulletScript.speedMultiplier); */
         }
+
+        checkOutOfBounds(); // Para que el jugador no se salga de la pantalla
     }
 
     private void OnCollisionEnter(Collision coliision) {
@@ -63,6 +66,17 @@ public class Player : MonoBehaviour
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         } else {
             Debug.Log("Colision con OVNI...");
+        }
+    }
+
+    private void checkOutOfBounds(){
+        if(Mathf.Abs(transform.position.x) > 10)
+        {
+            transform.position = new Vector3(-transform.position.x, transform.position.y);
+        }
+        if (Mathf.Abs(transform.position.y) > 4.77)
+        {
+            transform.position = new Vector3(transform.position.x, -transform.position.y);
         }
     }
 }
