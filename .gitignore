@@ -60,6 +60,7 @@ Asteroid/*.apk
 Asteroid/*.aab
 Asteroid/*.unitypackage
 Asteroid/*.app
+Build/
 
 # Crashlytics generated file
 Asteroid/crashlytics-build.properties
