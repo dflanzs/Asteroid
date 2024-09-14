@@ -10,6 +10,10 @@ public class Player : MonoBehaviour
     public float thrustForce = 200f;  // Public permite modificar el valor desde el editor de Unity (Desde el scrript)
     public float rotationSpeed = 120f;
 
+
+    public GameObject gun, bulletPrefab;
+
+
     private Rigidbody rigid; // Private impide modificar el valor del copmponente desde el editopr de Unity (Desde el scrript)
 
     void Start()
@@ -35,6 +39,15 @@ public class Player : MonoBehaviour
         /* transform.Rotate(transform.right * thrust * thrustForce); */
         
     
-        transform.Rotate(-rotation * rotationSpeed * Vector3.forward); // Negativo para invertir rotavcion
+        transform.Rotate(-rotation * rotationSpeed * Vector3.forward); // Negativo para invertir rotacion
+
+        // Para disparar
+
+        if(Input.GetKeyDown(KeyCode.Space)){
+            GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
+
+            Bullet ballaScript = bullet.GetComponent<Bullet>();
+            ballaScript.targetVector = transform.right;
+        }
     }
 }
