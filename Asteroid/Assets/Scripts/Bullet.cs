@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class Bullet : MonoBehaviour
 {
@@ -11,9 +12,11 @@ public class Bullet : MonoBehaviour
     public float maxLifeTime = 3f;
 
     public Vector3 targetVector;
-    
+    public TextMeshProUGUI text; // El texto legacy no se adecuaba al tamaño de la pantalla 
+
     void Start()
     {
+        text = FindObjectOfType<TextMeshProUGUI>();
         Destroy(gameObject, maxLifeTime);
     }
 
@@ -38,7 +41,6 @@ public class Bullet : MonoBehaviour
     }
 
     private void updateTextScore(){
-        GameObject canvas = GameObject.FindGameObjectWithTag("UI");
-        canvas.GetComponent<Text>().text = "Score: " + Player.SCORE;
+        text.text = "Score:" + Player.SCORE;
     }
 }
