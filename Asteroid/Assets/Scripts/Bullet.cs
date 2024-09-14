@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Bullet : MonoBehaviour
 {
@@ -23,8 +24,21 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision){
         if(collision.gameObject.CompareTag("Enemy")){
+
+            incrementScore();
+
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }
+    }
+
+    private void incrementScore(){
+        Player.SCORE++;
+        updateTextScore();
+    }
+
+    private void updateTextScore(){
+        GameObject canvas = GameObject.FindGameObjectWithTag("UI");
+        canvas.GetComponent<Text>().text = "Score: " + Player.SCORE;
     }
 }

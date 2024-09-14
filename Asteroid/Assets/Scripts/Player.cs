@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public static int SCORE;
     // Para el giro de la nave modificamos la componente trasnform
     // Para el movimiento de la nave usamos fuerzas
 
@@ -59,6 +59,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision coliision) {
         if(coliision.gameObject.CompareTag("Enemy")){
+            Player.SCORE = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         } else {
             Debug.Log("Colision con OVNI...");
