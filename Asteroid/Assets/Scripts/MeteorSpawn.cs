@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class MeteorSpawn : MonoBehaviour
@@ -25,12 +26,22 @@ public class MeteorSpawn : MonoBehaviour
 
             Vector2 spawnPosition = getRandomSpawnPoint();
 
-            GameObject meteor = Instantiate(meteorPrefab, spawnPosition, Quaternion.identity);
-            Destroy(meteor, maxTimeLife);
+            GameObject meteor = objectPooling.Instance.requestInstance();
+            meteor.transform.position = spawnPosition;
+
+            StartCoroutine(deactivateMeteor(meteor, maxTimeLife));
         }
     }
 
     private Vector2 getRandomSpawnPoint(){
         return new Vector2(Random.Range(-xLimit, xLimit), 8);
+    }
+
+    // Desactivar los meteoritos
+    private IEnumerator deactivateMeteor(GameObject meteor, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+
+        meteor.SetActive(false);
     }
 }

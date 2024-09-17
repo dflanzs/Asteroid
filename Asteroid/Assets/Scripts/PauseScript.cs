@@ -15,7 +15,7 @@ public class PauseScript : MonoBehaviour
     public GameObject PauseMenu;
 
     public GameObject pauseImage;
-
+    
     public TextMeshProUGUI text;
 
     private bool gamePaused = false;

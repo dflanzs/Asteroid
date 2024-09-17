@@ -6,8 +6,6 @@ public class Bullet : MonoBehaviour
 
     public float speed = 5f;
 
-    public float maxLifeTime = 3f;
-
     public Vector3 targetVector;
 
     public TextMeshProUGUI text; // El texto legacy no se adecuaba al tamaño de la pantalla 
@@ -15,7 +13,6 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         text = FindObjectOfType<TextMeshProUGUI>();
-        Destroy(gameObject, maxLifeTime);
     }
 
     void Update()
@@ -31,7 +28,7 @@ public class Bullet : MonoBehaviour
             incrementScore();
 
             Destroy(collision.gameObject);
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 
@@ -45,4 +42,6 @@ public class Bullet : MonoBehaviour
     {
         text.text = "Score:" + Player.SCORE;
     }
+
+
 }

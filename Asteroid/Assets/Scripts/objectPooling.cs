@@ -22,7 +22,7 @@ public class objectPooling : MonoBehaviour
         get { return poolInstance; }
     }
 
-    void private void Awake()
+    void Awake()
     {
         if(poolInstance == null)
         {
@@ -45,7 +45,7 @@ public class objectPooling : MonoBehaviour
        // Instanciamos cada prefab y los guardamos en la pool
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject instantiatedPrefab = Instantsiate(prefabToPool);
+            GameObject instantiatedPrefab = Instantiate(prefabToPool);
             instantiatedPrefab.SetActive(false);
 
             // Para prdenar indicamos que el padre de los objetos de la pool es la propia pool
@@ -62,7 +62,10 @@ public class objectPooling : MonoBehaviour
                 pooledObjects[i].SetActive(true);
                 return pooledObjects[i];
             }
+
         }
+        
+        return null; // Si todos los objetos están ocupados
     }
 
 }

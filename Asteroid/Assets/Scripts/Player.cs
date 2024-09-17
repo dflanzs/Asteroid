@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -12,10 +13,11 @@ public class Player : MonoBehaviour
 
     public float rotationSpeed;
 
-    public GameObject gun, bulletPrefab, meteorAtackPoint;
+    public GameObject gun, /* bulletPrefab, */ meteorAtackPoint;
 
     public TextMeshProUGUI text;
 
+    public float bulletMaxLifeTime = 4f;
 
     private Rigidbody rigid; // Private impide modificar el valor del copmponente desde el editopr de Unity (Desde el scrript)
 
@@ -50,12 +52,14 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
+            //GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
+
+            GameObject bullet = objectPooling.Instance.requestInstance();
 
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.targetVector = transform.right;
-            /* bulletScript.speedMultiplier = thrust*thrustForce + 1; */
-            /* Debug.Log(bulletScript.speedMultiplier); */
+
+            StartCoroutine(deactivateBulet(bullet, bulletMaxLifeTime));
         }
 
         checkOutOfBounds(); // Para que el jugador no se salga de la pantalla
@@ -83,4 +87,15 @@ public class Player : MonoBehaviour
             transform.position = new Vector3(transform.position.x, -transform.position.y);
         }
     }
+
+    // Corutina para desactivar las balas
+    private IEnumerator deactivateBulet(GameObject bullet, float delay)
+    {
+        // Espera el tiempo especificado
+        yield return new WaitForSeconds(delay);
+
+        // Desactiva la bala
+        bullet.SetActive(false);
+    }
+
 }
