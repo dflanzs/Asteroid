@@ -1024,7 +1024,6 @@ MonoBehaviour:
   thrustForce: 300
   rotationSpeed: 250
   gun: {fileID: 1576937551}
-  meteorAtackPoint: {fileID: 0}
   text: {fileID: 0}
   bulletMaxLifeTime: 4
 --- !u!136 &954737848
@@ -1064,7 +1063,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pooledObjects: []
   prefabToPool: {fileID: 5865762002758847173, guid: 39e93dd25301715ddbcdc2feb4b55ca6, type: 3}
-  poolSize: 20
+  poolSize: 30
 --- !u!1 &1295524124
 GameObject:
   m_ObjectHideFlags: 0

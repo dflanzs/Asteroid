@@ -32,6 +32,7 @@ public class Player : MonoBehaviour
     {
         float rotation = Input.GetAxis("Rotate") * Time.deltaTime;
         float thrust = Input.GetAxis("Thrust") * Time.deltaTime; 
+        
         /*
         * Usamos clase input porque es configurable desde Unity, y pq así no tenemos que asignar teclas específicas
         * desde File/BuildSettings/PlayerSettings/InputManager
@@ -56,15 +57,19 @@ public class Player : MonoBehaviour
 
             GameObject bullet = objectPooling.Instance.requestInstance();
             
-            bullet.transform.position = gun.transform.position;
-            bullet.transform.rotation = gun.transform.rotation;
-
-            Bullet bulletScript = bullet.GetComponent<Bullet>();
-            bulletScript.targetVector = transform.right;
-
-            StartCoroutine(deactivateBulet(bullet, bulletMaxLifeTime));
+            if(bullet != null)
+            {    
+                bullet.transform.position = gun.transform.position;
+                bullet.transform.rotation = Quaternion.identity;
+                
+                Bullet bulletScript = bullet.GetComponent<Bullet>();
+                bulletScript.targetVector = transform.right;
+                
+                bullet.SetActive(true);
+                
+                StartCoroutine(deactivateBulet(bullet, bulletMaxLifeTime));
+            }
         }
-
         checkOutOfBounds(); // Para que el jugador no se salga de la pantalla
     }
 
@@ -81,11 +86,11 @@ public class Player : MonoBehaviour
 
     private void checkOutOfBounds()
     {
-        if(Mathf.Abs(transform.position.x) > 9.25)
+        if(Mathf.Abs(transform.position.x) > 9.35)
         {
             transform.position = new Vector3(-transform.position.x, transform.position.y);
         }
-        if (Mathf.Abs(transform.position.y) > 5.5)
+        if (Mathf.Abs(transform.position.y) > 5.6)
         {
             transform.position = new Vector3(transform.position.x, -transform.position.y);
         }

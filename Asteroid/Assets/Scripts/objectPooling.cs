@@ -39,6 +39,9 @@ public class objectPooling : MonoBehaviour
 
             // Para prdenar indicamos que el padre de los objetos de la pool es la propia pool
             instantiatedPrefab.transform.SetParent(transform); 
+
+            // Metemos los objetos a la lista
+            pooledObjects.Add(instantiatedPrefab);
         }
     }
 
@@ -48,7 +51,6 @@ public class objectPooling : MonoBehaviour
         {
             if (!pooledObjects[i].activeInHierarchy) // Comprobamos si el elemento está inactivo para saber si podemos utilizarlo
             {
-                pooledObjects[i].SetActive(true);
                 return pooledObjects[i];
             }
         }

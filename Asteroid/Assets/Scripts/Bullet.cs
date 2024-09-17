@@ -15,16 +15,16 @@ public class Bullet : MonoBehaviour
         text = FindObjectOfType<TextMeshProUGUI>();
     }
 
-    void OnEnable()
+    void Update()
     {
-        transform.Translate(speed * /* speedMultiplier * */ targetVector * Time.deltaTime);
+        // Space.World para que la bala se mueva respecto del mundo y no respecto de la nave
+        transform.Translate(speed * targetVector * Time.deltaTime, Space.World); 
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
         {
-
             incrementScore();
 
             Destroy(collision.gameObject);

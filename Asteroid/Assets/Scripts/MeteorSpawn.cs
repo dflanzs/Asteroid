@@ -28,12 +28,13 @@ public class MeteorSpawn : MonoBehaviour
 
             GameObject meteor = objectPooling.Instance.requestInstance();
             
-            meteor.SetActive(true);
 
             if(meteor != null)
             {
                 meteor.transform.position = spawnPosition;
                 meteor.transform.rotation = Quaternion.identity;
+                
+                meteor.SetActive(true);
             }
 
 
