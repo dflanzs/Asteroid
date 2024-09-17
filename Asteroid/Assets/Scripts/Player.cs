@@ -55,6 +55,9 @@ public class Player : MonoBehaviour
             //GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
 
             GameObject bullet = objectPooling.Instance.requestInstance();
+            
+            bullet.transform.position = gun.transform.position;
+            bullet.transform.rotation = gun.transform.rotation;
 
             Bullet bulletScript = bullet.GetComponent<Bullet>();
             bulletScript.targetVector = transform.right;

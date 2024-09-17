@@ -27,13 +27,22 @@ public class MeteorSpawn : MonoBehaviour
             Vector2 spawnPosition = getRandomSpawnPoint();
 
             GameObject meteor = objectPooling.Instance.requestInstance();
-            meteor.transform.position = spawnPosition;
+            
+            meteor.SetActive(true);
+
+            if(meteor != null)
+            {
+                meteor.transform.position = spawnPosition;
+                meteor.transform.rotation = Quaternion.identity;
+            }
+
 
             StartCoroutine(deactivateMeteor(meteor, maxTimeLife));
         }
     }
 
-    private Vector2 getRandomSpawnPoint(){
+    private Vector2 getRandomSpawnPoint()
+    {
         return new Vector2(Random.Range(-xLimit, xLimit), 8);
     }
 
@@ -42,6 +51,9 @@ public class MeteorSpawn : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
 
-        meteor.SetActive(false);
+        if(meteor != null)
+        {
+            meteor.SetActive(false);
+        }
     }
 }
