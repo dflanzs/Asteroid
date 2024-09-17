@@ -49,8 +49,10 @@ public class PauseScript : MonoBehaviour
     }
 
     public void restart(){
+        Time.timeScale = 1f;
         gamePaused = false;
-        /*PauseButton.SetActive(true);
+        /* gamePaused = false;
+        PauseButton.SetActive(true);
         PauseMenu.SetActive(false); 
         ResumeButton.SetActive(false);
         ResetButton.SetActive(false);
