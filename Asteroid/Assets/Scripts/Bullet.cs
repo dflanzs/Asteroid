@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
         text = FindObjectOfType<TextMeshProUGUI>();
     }
 
-    void Update()
+    void OnEnable()
     {
         transform.Translate(speed * /* speedMultiplier * */ targetVector * Time.deltaTime);
     }

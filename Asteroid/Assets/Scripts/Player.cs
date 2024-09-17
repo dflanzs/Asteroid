@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
 
     public float rotationSpeed;
 
-    public GameObject gun, /* bulletPrefab, */ meteorAtackPoint;
+    public GameObject gun;
 
     public TextMeshProUGUI text;
 
