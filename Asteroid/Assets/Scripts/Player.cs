@@ -61,7 +61,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter(Collision coliision) {
         if(coliision.gameObject.CompareTag("Enemy")){
-            Player.SCORE = 0;
+            SCORE = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         } else {
             Debug.Log("Colision con OVNI...");

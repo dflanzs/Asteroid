@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,9 +7,10 @@ public class PauseScript : MonoBehaviour
     public GameObject PauseButton;
     public GameObject ResumeButton;
     public GameObject ResetButton;
-    public GameObject QuitButton;
+    public GameObject QuitButton;    
     public GameObject PauseMenu;
     public GameObject pauseImage;
+    public TextMeshProUGUI text;
 
     private bool gamePaused = false;
 
@@ -27,10 +29,11 @@ public class PauseScript : MonoBehaviour
         gamePaused = true;
         PauseMenu.SetActive(true); 
         PauseButton.SetActive(false);
-        ResumeButton.SetActive(true);
+        text.enabled = false;
+        /* ResumeButton.SetActive(true);
         ResetButton.SetActive(true);
         QuitButton.SetActive(true);
-        pauseImage.SetActive(true);
+        pauseImage.SetActive(true); */
     }
 
     public void resume(){
@@ -38,20 +41,21 @@ public class PauseScript : MonoBehaviour
         gamePaused = false;
         PauseButton.SetActive(true);
         PauseMenu.SetActive(false); 
-        ResumeButton.SetActive(false);
+        text.enabled = true;
+        /* ResumeButton.SetActive(false);
         ResetButton.SetActive(false);
         QuitButton.SetActive(false);
-        pauseImage.SetActive(false);
+        pauseImage.SetActive(false); */
     }
 
     public void restart(){
         gamePaused = false;
-        PauseButton.SetActive(true);
+        /*PauseButton.SetActive(true);
         PauseMenu.SetActive(false); 
         ResumeButton.SetActive(false);
         ResetButton.SetActive(false);
         QuitButton.SetActive(false);
-        pauseImage.SetActive(false);
+        pauseImage.SetActive(false);*/
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
