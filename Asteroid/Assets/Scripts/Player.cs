@@ -17,8 +17,6 @@ public class Player : MonoBehaviour
 
     public TextMeshProUGUI text;
 
-    public float bulletMaxLifeTime = 4f;
-
     private Rigidbody rigid; // Private impide modificar el valor del copmponente desde el editopr de Unity (Desde el scrript)
 
     void Start()
@@ -66,11 +64,11 @@ public class Player : MonoBehaviour
                 bulletScript.targetVector = transform.right;
                 
                 bullet.SetActive(true);
-                
-                StartCoroutine(deactivateBulet(bullet, bulletMaxLifeTime));
             }
         }
-        checkOutOfBounds(); // Para que el jugador no se salga de la pantalla
+        checkBulletOutOfBounds(); // Para desactivar las balas que se salen de la pantalla
+
+        checkPlayerOutOfBounds(); // Para que el jugador no se salga de la pantalla
     }
 
     private void OnCollisionEnter(Collision coliision)
@@ -84,7 +82,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void checkOutOfBounds()
+    private void checkPlayerOutOfBounds()
     {
         if(Mathf.Abs(transform.position.x) > 9.35)
         {
@@ -96,14 +94,18 @@ public class Player : MonoBehaviour
         }
     }
 
-    // Corutina para desactivar las balas
-    private IEnumerator deactivateBulet(GameObject bullet, float delay)
+    // Para devolver balas a la pool
+    private void checkBulletOutOfBounds()
     {
-        // Espera el tiempo especificado
-        yield return new WaitForSeconds(delay);
+        GameObject[] bullets = GameObject.FindGameObjectsWithTag("Bullet");
 
-        // Desactiva la bala
-        bullet.SetActive(false);
+        foreach(GameObject bullet in bullets)
+        {
+            if(Mathf.Abs(bullet.transform.position.x) > 9.35 || Mathf.Abs(bullet.transform.position.y) > 5.6)
+            {
+                bullet.SetActive(false);
+            }
+        }
     }
 
 }

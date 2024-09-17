@@ -2,9 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 public class MeteorSpawn : MonoBehaviour
-{
-    public float maxTimeLife = 4f;
-    
+{    
     public float spawnRatePerMinute = 30f;
     
     public float spawnIncrement = 1f;
@@ -14,8 +12,6 @@ public class MeteorSpawn : MonoBehaviour
     public Vector3 targetVector;
     
     public float xLimit;
-
-    public GameObject meteorPrefab;
 
     void Update()
     {
@@ -36,10 +32,9 @@ public class MeteorSpawn : MonoBehaviour
                 
                 meteor.SetActive(true);
             }
-
-
-            StartCoroutine(deactivateMeteor(meteor, maxTimeLife));
         }
+
+        checkMeteortOutOfBounds();
     }
 
     private Vector2 getRandomSpawnPoint()
@@ -47,14 +42,17 @@ public class MeteorSpawn : MonoBehaviour
         return new Vector2(Random.Range(-xLimit, xLimit), 8);
     }
 
-    // Desactivar los meteoritos
-    private IEnumerator deactivateMeteor(GameObject meteor, float delay)
+    // Para devolver meteoritos a la pool
+    private void checkMeteortOutOfBounds()
     {
-        yield return new WaitForSeconds(delay);
+        GameObject[] meteors = GameObject.FindGameObjectsWithTag("Meteor");
 
-        if(meteor != null)
+        foreach(GameObject meteor in meteors)
         {
-            meteor.SetActive(false);
+            if(-meteor.transform.position.y < 7)
+            {
+                meteor.SetActive(false);
+            }
         }
     }
 }

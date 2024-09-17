@@ -54,6 +54,11 @@ public class objectPooling : MonoBehaviour
                 return pooledObjects[i];
             }
         }
-        return null; // Si todos los objetos están ocupados
+        
+        // Si todos los objetos están ocupados creamos uno nuevo al final de la lista y lo devolvemos
+        addToPool(1);
+        pooledObjects[pooledObjects.Count - 1].SetActive(false);
+        poolSize++;
+        return pooledObjects[pooledObjects.Count - 1];
     }
 }
