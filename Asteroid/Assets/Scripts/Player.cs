@@ -5,14 +5,15 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     public static int SCORE;
+
     // Para el giro de la nave modificamos la componente trasnform
     // Para el movimiento de la nave usamos fuerzas
+    public float thrustForce;  // Public permite modificar el valor desde el editor de Unity (Desde el scrript)
 
-    public float thrustForce = 100f;  // Public permite modificar el valor desde el editor de Unity (Desde el scrript)
-    public float rotationSpeed = 120f;
+    public float rotationSpeed;
 
+    public GameObject gun, bulletPrefab, meteorAtackPoint;
 
-    public GameObject gun, bulletPrefab, meteorAtackPoint, newPlayer;
     public TextMeshProUGUI text;
 
 
@@ -47,7 +48,8 @@ public class Player : MonoBehaviour
 
         // Para disparar
 
-        if(Input.GetKeyDown(KeyCode.Space)){
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
             GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
 
             Bullet bulletScript = bullet.GetComponent<Bullet>();
@@ -59,8 +61,10 @@ public class Player : MonoBehaviour
         checkOutOfBounds(); // Para que el jugador no se salga de la pantalla
     }
 
-    private void OnCollisionEnter(Collision coliision) {
-        if(coliision.gameObject.CompareTag("Enemy")){
+    private void OnCollisionEnter(Collision coliision)
+    {
+        if(coliision.gameObject.CompareTag("Enemy"))
+        {
             SCORE = 0;
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         } else {
@@ -68,12 +72,13 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void checkOutOfBounds(){
+    private void checkOutOfBounds()
+    {
         if(Mathf.Abs(transform.position.x) > 9.25)
         {
             transform.position = new Vector3(-transform.position.x, transform.position.y);
         }
-        if (Mathf.Abs(transform.position.y) > 5)
+        if (Mathf.Abs(transform.position.y) > 5.5)
         {
             transform.position = new Vector3(transform.position.x, -transform.position.y);
         }

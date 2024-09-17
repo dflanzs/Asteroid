@@ -3,9 +3,13 @@ using UnityEngine;
 public class MeteorSpawn : MonoBehaviour
 {
     public float maxTimeLife = 4f;
+    
     public float spawnRatePerMinute = 30f;
+    
     public float spawnIncrement = 1f;
+    
     private float spawnDelay;
+    
     public Vector3 targetVector;
     
     public float xLimit;
@@ -14,7 +18,8 @@ public class MeteorSpawn : MonoBehaviour
 
     void Update()
     {
-        if(Time.time > spawnDelay){
+        if(Time.time > spawnDelay)
+        {
             spawnDelay = Time.time + 60/spawnRatePerMinute;
             spawnRatePerMinute += spawnIncrement;
 
