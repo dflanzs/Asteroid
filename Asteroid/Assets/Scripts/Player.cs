@@ -23,7 +23,6 @@ public class Player : MonoBehaviour
     {
         rigid = GetComponent<Rigidbody>();
         text = FindObjectOfType<TextMeshProUGUI>();
-        // Meteoritos
     }
 
     void Update()
@@ -53,17 +52,14 @@ public class Player : MonoBehaviour
         {
             //GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
 
-            GameObject bullet = objectPooling.Instance.requestInstance();
+            GameObject bullet = objectPooling.Instance.requestInstance(gun.transform.position);
             
             if(bullet != null)
-            {    
-                bullet.transform.position = gun.transform.position;
-                bullet.transform.rotation = Quaternion.identity;
+            {                   
+                bullet.SetActive(true); // Es null xd
                 
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
-                bulletScript.targetVector = transform.right;
-                
-                bullet.SetActive(true);
+                bulletScript.shoot(gun.transform.right);
             }
         }
         checkBulletOutOfBounds(); // Para desactivar las balas que se salen de la pantalla

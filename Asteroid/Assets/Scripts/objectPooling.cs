@@ -10,6 +10,8 @@ public class objectPooling : MonoBehaviour
     
     public int poolSize;
 
+    public Vector3 position;
+
     /* 
     * Para poder usar la pool desde otros scripts vamos a usar el patrón Singleton. 
     * Permite que tengamos una única instancia de la pool y que podamos acceder a los métodos desde otros scripts fácilmente
@@ -24,17 +26,24 @@ public class objectPooling : MonoBehaviour
 
     void Awake()
     {   
-        poolInstance = this;   
+        if(poolInstance == null)
+        {
+            poolInstance = this;
+        }
+        else
+        {
+            Destroy(this);
+        }   
         
-        addToPool(poolSize);
+        addToPool(poolSize, position);
     }
 
-    private void addToPool(int amount)
+    private void addToPool(int amount, Vector3 position)
     {
        // Instanciamos cada prefab y los guardamos en la pool
         for (int i = 0; i < poolSize; i++)
         {
-            GameObject instantiatedPrefab = Instantiate(prefabToPool);
+            GameObject instantiatedPrefab = Instantiate(prefabToPool,position ,Quaternion.identity);
             instantiatedPrefab.SetActive(false);
 
             // Para prdenar indicamos que el padre de los objetos de la pool es la propia pool
@@ -45,7 +54,7 @@ public class objectPooling : MonoBehaviour
         }
     }
 
-    public GameObject requestInstance()
+    public GameObject requestInstance(Vector3 position)
     {
         for (int i = 0; i < pooledObjects.Count; i++)
         {
@@ -56,9 +65,10 @@ public class objectPooling : MonoBehaviour
         }
         
         // Si todos los objetos están ocupados creamos uno nuevo al final de la lista y lo devolvemos
-        addToPool(1);
+        addToPool(1, position);
         pooledObjects[pooledObjects.Count - 1].SetActive(false);
         poolSize++;
+
         return pooledObjects[pooledObjects.Count - 1];
     }
 }

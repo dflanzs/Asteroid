@@ -22,18 +22,13 @@ public class MeteorSpawn : MonoBehaviour
 
             Vector2 spawnPosition = getRandomSpawnPoint();
 
-            GameObject meteor = objectPooling.Instance.requestInstance();
-            
+            GameObject meteor = objectPooling.Instance.requestInstance(spawnPosition);
 
             if(meteor != null)
-            {
-                meteor.transform.position = spawnPosition;
-                meteor.transform.rotation = Quaternion.identity;
-                
+            {                
                 meteor.SetActive(true);
             }
         }
-
         checkMeteortOutOfBounds();
     }
 
@@ -45,7 +40,7 @@ public class MeteorSpawn : MonoBehaviour
     // Para devolver meteoritos a la pool
     private void checkMeteortOutOfBounds()
     {
-        GameObject[] meteors = GameObject.FindGameObjectsWithTag("Meteor");
+        GameObject[] meteors = GameObject.FindGameObjectsWithTag("Enemy");
 
         foreach(GameObject meteor in meteors)
         {
