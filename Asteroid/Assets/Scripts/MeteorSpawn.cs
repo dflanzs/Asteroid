@@ -34,11 +34,9 @@ public class MeteorSpawn : MonoBehaviour
         checkMeteortOutOfBounds();
     }
 
-    /* Cuando se activen dar la position definitiva, mientras a tomar por culo */
-
-    private Vector2 getRandomSpawnPoint()
+    private Vector3 getRandomSpawnPoint()
     {
-        return new Vector2(Random.Range(-xLimit, xLimit), 8);
+        return new Vector3(Random.Range(-xLimit, xLimit), 8);
     }
 
     // Para devolver meteoritos a la pool

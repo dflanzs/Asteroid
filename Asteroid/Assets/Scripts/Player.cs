@@ -40,8 +40,6 @@ public class Player : MonoBehaviour
 
         Vector3 thrustDirection = transform.right; // Direccion a la que apunta la nave al empezar la partida (right)
         rigid.AddForce(thrust * thrustForce * thrustDirection);
-        /* transform.Rotate(transform.right * thrust * thrustForce); */
-        
     
         transform.Rotate(-rotation * rotationSpeed * Vector3.forward); // Negativo para invertir rotacion
 
@@ -49,8 +47,6 @@ public class Player : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            //GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
-
             GameObject bullet = ObjectPooling.Instance.requestInstance("Bullet");
             
             if(bullet != null)

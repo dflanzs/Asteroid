@@ -6,11 +6,11 @@ public class ObjectPooling : MonoBehaviour
 {
     [SerializeField] private List<GameObject> pooledOBullets; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
     
-    [SerializeField] private List<GameObject> pooledOMeteors; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
+    [SerializeField] private List<GameObject> pooledOMeteors;
 
     [SerializeField] private GameObject bulletPrefab; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
     
-    [SerializeField] private GameObject meteorPrefab; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
+    [SerializeField] private GameObject meteorPrefab;
 
     public int poolSize;
 

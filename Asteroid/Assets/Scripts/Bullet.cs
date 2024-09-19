@@ -18,12 +18,6 @@ public class Bullet : MonoBehaviour
         text = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
-    /* void Update()
-    {
-        // Space.World para que la bala se mueva respecto del mundo y no respecto de la nave
-        transform.Translate(speed * targetVector * Time.deltaTime, Space.World); 
-    } */
-
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.CompareTag("Enemy"))
