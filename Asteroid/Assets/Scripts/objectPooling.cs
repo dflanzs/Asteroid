@@ -2,10 +2,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class objectPooling : MonoBehaviour
+public class ObjectPooling : MonoBehaviour
 {
-    [SerializeField] private List<GameObject> pooledObjects; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
+    [SerializeField] private List<GameObject> pooledOBullets; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
     
+    [SerializeField] private List<GameObject> pooledOMeteors; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
+
     [SerializeField] private GameObject prefabToPool; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
     
     public int poolSize;
@@ -17,9 +19,9 @@ public class objectPooling : MonoBehaviour
     * Permite que tengamos una única instancia de la pool y que podamos acceder a los métodos desde otros scripts fácilmente
     */
 
-    private static objectPooling poolInstance;
+    private static ObjectPooling poolInstance;
 
-    public static objectPooling Instance
+    public static ObjectPooling Instance
     {
         get { return poolInstance; }
     }
@@ -40,34 +42,63 @@ public class objectPooling : MonoBehaviour
 
     private void addToPool(int amount)
     {
-       // Instanciamos cada prefab y los guardamos en la pool
+       // Instanciamos cada prefab y los guardamos en la poolç
         for (int i = 0; i < amount; i++)
         {
             GameObject instantiatedPrefab = Instantiate(prefabToPool);
             instantiatedPrefab.SetActive(false);
 
-            // no padre
+            // Metemos los objetos a la lista
+            pooledOBullets.Add(instantiatedPrefab);
+        }
+
+        for (int i = 0; i < amount; i++)
+        {
+            GameObject instantiatedPrefab = Instantiate(prefabToPool);
+            instantiatedPrefab.SetActive(false);
 
             // Metemos los objetos a la lista
-            pooledObjects.Add(instantiatedPrefab);
+            pooledOMeteors.Add(instantiatedPrefab);
         }
     }
 
-    public GameObject requestInstance()
+    public GameObject requestInstance(string objectType)
     {
-        for (int i = 0; i < pooledObjects.Count; i++)
+        if(objectType == "Bullet")
         {
-            if (!pooledObjects[i].activeInHierarchy) // Comprobamos si el elemento está inactivo para saber si podemos utilizarlo
+            for (int i = 0; i < pooledOBullets.Count; i++)
             {
-                return pooledObjects[i];
+                if (!pooledOBullets[i].activeInHierarchy) // Comprobamos si el elemento está inactivo para saber si podemos utilizarlo
+                {
+                    return pooledOBullets[i];
+                }
             }
-        }
-        
-        // Si todos los objetos están ocupados creamos uno nuevo al final de la lista y lo devolvemos
-        addToPool(1);
-        pooledObjects[pooledObjects.Count - 1].SetActive(false);
-        poolSize++;
+            // Si todos los objetos están ocupados creamos uno nuevo al final de la lista y lo devolvemos
+            addToPool(1);
+            pooledOBullets[pooledOBullets.Count - 1].SetActive(false);
+            poolSize++;
 
-        return pooledObjects[pooledObjects.Count - 1];
+            return pooledOBullets[pooledOBullets.Count - 1];
+        } 
+        else if (objectType == "Meteor")
+        {
+            for (int i = 0; i < pooledOBullets.Count; i++)
+            {
+                if (!pooledOMeteors[i].activeInHierarchy) // Comprobamos si el elemento está inactivo para saber si podemos utilizarlo
+                {
+                    return pooledOMeteors[i];
+                }
+            }
+            // Si todos los objetos están ocupados creamos uno nuevo al final de la lista y lo devolvemos
+            addToPool(1);
+            pooledOMeteors[pooledOMeteors.Count - 1].SetActive(false);
+            poolSize++;
+
+            return pooledOMeteors[pooledOMeteors.Count - 1];
+        } 
+        else
+        {
+            return null;
+        }
     }
 }

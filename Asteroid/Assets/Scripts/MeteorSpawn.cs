@@ -19,15 +19,16 @@ public class MeteorSpawn : MonoBehaviour
             spawnDelay = Time.time + 60/spawnRatePerMinute;
             spawnRatePerMinute += spawnIncrement;
 
-            Vector2 spawnPosition = getRandomSpawnPoint();
+            Vector3 spawnPosition = getRandomSpawnPoint();
 
-            GameObject meteor = objectPooling.Instance.requestInstance();
-
-            meteor.transform.position = spawnPosition;
+            GameObject meteor = ObjectPooling.Instance.requestInstance("Meteor");
 
             if(meteor != null)
             {                
                 meteor.SetActive(true);
+                meteor.transform.position = spawnPosition;
+
+                Debug.Log("Meteorito...");
             }
         }
         checkMeteortOutOfBounds();
@@ -47,7 +48,7 @@ public class MeteorSpawn : MonoBehaviour
 
         foreach(GameObject meteor in meteors)
         {
-            if(-meteor.transform.position.y < 7)
+            if(meteor.transform.position.y < -7)
             {
                 meteor.SetActive(false);
             }

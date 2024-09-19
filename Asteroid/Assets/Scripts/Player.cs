@@ -51,7 +51,7 @@ public class Player : MonoBehaviour
         {
             //GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
 
-            GameObject bullet = objectPooling.Instance.requestInstance();
+            GameObject bullet = ObjectPooling.Instance.requestInstance("Bullet");
             
             if(bullet != null)
             {            
@@ -63,8 +63,7 @@ public class Player : MonoBehaviour
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
                 bulletScript.shoot(gun.transform.right, bullet.GetComponent<BoxCollider>());
                 
-                
-                Debug.Log("Disparo...");       
+                Debug.Log("Disparo...");   
             }
         }
         checkBulletOutOfBounds(); // Para desactivar las balas que se salen de la pantalla
