@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using System.Collections;
 
 public class Player : MonoBehaviour
 {
@@ -52,14 +51,20 @@ public class Player : MonoBehaviour
         {
             //GameObject bullet = Instantiate(bulletPrefab, gun.transform.position, Quaternion.identity);
 
-            GameObject bullet = objectPooling.Instance.requestInstance(gun.transform.position);
+            GameObject bullet = objectPooling.Instance.requestInstance();
             
             if(bullet != null)
-            {                   
-                bullet.SetActive(true); // Es null xd
+            {            
+                bullet.SetActive(true);
                 
+                bullet.transform.position = gun.transform.position;
+                bullet.transform.rotation = Quaternion.identity;
+
                 Bullet bulletScript = bullet.GetComponent<Bullet>();
-                bulletScript.shoot(gun.transform.right);
+                bulletScript.shoot(gun.transform.right, bullet.GetComponent<BoxCollider>());
+                
+                
+                Debug.Log("Disparo...");       
             }
         }
         checkBulletOutOfBounds(); // Para desactivar las balas que se salen de la pantalla

@@ -7,11 +7,12 @@ TagManager:
   - Enemy
   - UI
   - Bullet
+  - Score
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bullet
   - Water
   - UI
   - 

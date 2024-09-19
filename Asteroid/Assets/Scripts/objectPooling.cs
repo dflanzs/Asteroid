@@ -35,26 +35,25 @@ public class objectPooling : MonoBehaviour
             Destroy(this);
         }   
         
-        addToPool(poolSize, position);
+        addToPool(poolSize);
     }
 
-    private void addToPool(int amount, Vector3 position)
+    private void addToPool(int amount)
     {
        // Instanciamos cada prefab y los guardamos en la pool
-        for (int i = 0; i < poolSize; i++)
+        for (int i = 0; i < amount; i++)
         {
-            GameObject instantiatedPrefab = Instantiate(prefabToPool,position ,Quaternion.identity);
+            GameObject instantiatedPrefab = Instantiate(prefabToPool);
             instantiatedPrefab.SetActive(false);
 
-            // Para prdenar indicamos que el padre de los objetos de la pool es la propia pool
-            instantiatedPrefab.transform.SetParent(transform); 
+            // no padre
 
             // Metemos los objetos a la lista
             pooledObjects.Add(instantiatedPrefab);
         }
     }
 
-    public GameObject requestInstance(Vector3 position)
+    public GameObject requestInstance()
     {
         for (int i = 0; i < pooledObjects.Count; i++)
         {
@@ -65,7 +64,7 @@ public class objectPooling : MonoBehaviour
         }
         
         // Si todos los objetos están ocupados creamos uno nuevo al final de la lista y lo devolvemos
-        addToPool(1, position);
+        addToPool(1);
         pooledObjects[pooledObjects.Count - 1].SetActive(false);
         poolSize++;
 

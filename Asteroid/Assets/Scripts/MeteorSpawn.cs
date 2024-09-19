@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 public class MeteorSpawn : MonoBehaviour
@@ -22,7 +21,9 @@ public class MeteorSpawn : MonoBehaviour
 
             Vector2 spawnPosition = getRandomSpawnPoint();
 
-            GameObject meteor = objectPooling.Instance.requestInstance(spawnPosition);
+            GameObject meteor = objectPooling.Instance.requestInstance();
+
+            meteor.transform.position = spawnPosition;
 
             if(meteor != null)
             {                
@@ -31,6 +32,8 @@ public class MeteorSpawn : MonoBehaviour
         }
         checkMeteortOutOfBounds();
     }
+
+    /* Cuando se activen dar la position definitiva, mientras a tomar por culo */
 
     private Vector2 getRandomSpawnPoint()
     {

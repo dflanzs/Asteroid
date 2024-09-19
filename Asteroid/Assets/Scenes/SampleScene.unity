@@ -939,7 +939,7 @@ Rigidbody:
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 72
   m_CollisionDetection: 0
 --- !u!212 &954737845
 SpriteRenderer:
@@ -1025,7 +1025,6 @@ MonoBehaviour:
   rotationSpeed: 250
   gun: {fileID: 1576937551}
   text: {fileID: 0}
-  bulletMaxLifeTime: 4
 --- !u!136 &954737848
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -1039,7 +1038,7 @@ CapsuleCollider:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
   m_LayerOverridePriority: 0
   m_IsTrigger: 0
   m_ProvidesContacts: 0
@@ -1064,6 +1063,7 @@ MonoBehaviour:
   pooledObjects: []
   prefabToPool: {fileID: 5865762002758847173, guid: 39e93dd25301715ddbcdc2feb4b55ca6, type: 3}
   poolSize: 30
+  position: {x: 0, y: 0, z: 0}
 --- !u!1 &1295524124
 GameObject:
   m_ObjectHideFlags: 0
@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '  Score: 0  '
+  m_text: 'Score: 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -2104,7 +2104,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: 21300000, guid: ab83b5ea1bcd40403ae0099e6177fa2d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2143,12 +2143,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: faed3438beb0fbec083bf1a410ad4848, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxTimeLife: 10
   spawnRatePerMinute: 30
   spawnIncrement: 1
   targetVector: {x: 0, y: 0, z: 0}
   xLimit: 10
-  meteorPrefab: {fileID: 2400104444239387302, guid: b2cd470bc2ba667ad8dff11d14603c99, type: 3}
 --- !u!114 &2130047723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2164,6 +2162,7 @@ MonoBehaviour:
   pooledObjects: []
   prefabToPool: {fileID: 2400104444239387302, guid: b2cd470bc2ba667ad8dff11d14603c99, type: 3}
   poolSize: 10
+  position: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

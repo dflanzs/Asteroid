@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         rigid = GetComponent<Rigidbody>();
-        text = FindObjectOfType<TextMeshProUGUI>();
+        text = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
     /* void Update()
@@ -30,7 +30,7 @@ public class Bullet : MonoBehaviour
         {
             incrementScore();
 
-            Destroy(collision.gameObject);
+            collision.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
@@ -46,8 +46,9 @@ public class Bullet : MonoBehaviour
         text.text = "Score:" + Player.SCORE;
     }
 
-    public void shoot(Vector3 targetVector)
+    public void shoot(Vector3 targetVector, BoxCollider collision)
     {
         rigid.velocity = targetVector * speed;
+        collision.gameObject.SetActive(true);
     }
 }
