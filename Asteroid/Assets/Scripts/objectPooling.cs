@@ -8,8 +8,10 @@ public class ObjectPooling : MonoBehaviour
     
     [SerializeField] private List<GameObject> pooledOMeteors; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
 
-    [SerializeField] private GameObject prefabToPool; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
+    [SerializeField] private GameObject bulletPrefab; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
     
+    [SerializeField] private GameObject meteorPrefab; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
+
     public int poolSize;
 
     public Vector3 position;
@@ -45,7 +47,7 @@ public class ObjectPooling : MonoBehaviour
        // Instanciamos cada prefab y los guardamos en la poolç
         for (int i = 0; i < amount; i++)
         {
-            GameObject instantiatedPrefab = Instantiate(prefabToPool);
+            GameObject instantiatedPrefab = Instantiate(bulletPrefab);
             instantiatedPrefab.SetActive(false);
 
             // Metemos los objetos a la lista
@@ -54,7 +56,7 @@ public class ObjectPooling : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject instantiatedPrefab = Instantiate(prefabToPool);
+            GameObject instantiatedPrefab = Instantiate(meteorPrefab);
             instantiatedPrefab.SetActive(false);
 
             // Metemos los objetos a la lista
