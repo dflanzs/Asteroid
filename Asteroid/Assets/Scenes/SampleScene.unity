@@ -824,11 +824,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04883a84915154375b305499a6dc6bdd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pooledOBullets: []
-  pooledOMeteors: []
   bulletPrefab: {fileID: 5865762002758847173, guid: 39e93dd25301715ddbcdc2feb4b55ca6, type: 3}
   meteorPrefab: {fileID: 2400104444239387302, guid: b2cd470bc2ba667ad8dff11d14603c99, type: 3}
-  poolSize: 30
+  meteorChiquitoPrefab: {fileID: 2400104444239387302, guid: 7b0c8a24ccd61783bbb94f41772d510f, type: 3}
+  poolSize: 50
   position: {x: 0, y: 0, z: 0}
 --- !u!1 &619394800
 GameObject:
@@ -1623,7 +1622,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -11.583862, y: -454}
+  m_AnchoredPosition: {x: -11.583862, y: -507}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1420134006
@@ -1673,8 +1672,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 30
+  m_fontSizeBase: 30
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18

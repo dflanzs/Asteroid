@@ -4,17 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class PauseScript : MonoBehaviour
 {
-    public GameObject PauseButton;
-
-    public GameObject ResumeButton;
-
-    public GameObject ResetButton;
-
-    public GameObject QuitButton; 
-
-    public GameObject PauseMenu;
-
-    public GameObject pauseImage;
+    public GameObject PauseButton, ResumeButton, ResetButton, QuitButton, PauseMenu, pauseImage;
     
     public TextMeshProUGUI text;
 

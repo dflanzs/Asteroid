@@ -18,13 +18,13 @@ public class Bullet : MonoBehaviour
         text = GameObject.Find("Score").GetComponent<TextMeshProUGUI>();
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider collider)
     {
-        if(collision.gameObject.CompareTag("Enemy"))
+        if(collider.gameObject.CompareTag("Enemy"))
         {
             incrementScore();
 
-            collision.gameObject.SetActive(false);
+            collider.gameObject.SetActive(false);
             gameObject.SetActive(false);
         }
     }
