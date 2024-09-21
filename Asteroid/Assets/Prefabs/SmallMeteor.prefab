@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7664023825400834142}
   - component: {fileID: 6305268408220160597}
   m_Layer: 0
-  m_Name: MeteorChiquito
+  m_Name: SmallMeteor
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
