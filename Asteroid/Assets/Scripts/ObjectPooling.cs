@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class ObjectPooling : MonoBehaviour
 {
-    [SerializeField] private Queue<GameObject> pooledOBullets, pooledMeteors, pooledMeteorChiquitos; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
+    [SerializeField] private Queue<GameObject> pooledOBullets, pooledMeteors, pooledSmallMeteors; // Usamos una lista por si necesitamos aumentar el número de elementos de la pool temporalmente
 
-    [SerializeField] private GameObject bulletPrefab, meteorPrefab, meteorChiquitoPrefab; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
+    [SerializeField] private GameObject bulletPrefab, meteorPrefab, smallMeteorPrefab; // Para exponer una variable en el editor de Unity sin cambiar los permisos (hacerla pública)
     
     public int poolSize;
 
@@ -28,7 +28,7 @@ public class ObjectPooling : MonoBehaviour
     {   
         pooledOBullets = new Queue<GameObject>();
         pooledMeteors = new Queue<GameObject>();
-        pooledMeteorChiquitos = new Queue<GameObject>();        
+        pooledSmallMeteors = new Queue<GameObject>();        
 
         
         if(poolInstance == null)
@@ -66,11 +66,11 @@ public class ObjectPooling : MonoBehaviour
 
         for (int i = 0; i < amount; i++)
         {
-            GameObject instantiatedPrefab = Instantiate(meteorChiquitoPrefab);
+            GameObject instantiatedPrefab = Instantiate(smallMeteorPrefab);
             instantiatedPrefab.SetActive(false);
 
             // Metemos los objetos a la lista
-            pooledMeteorChiquitos.Enqueue(instantiatedPrefab);
+            pooledSmallMeteors.Enqueue(instantiatedPrefab);
         }
     }
     public GameObject requestInstance(string objectType)
@@ -104,12 +104,12 @@ public class ObjectPooling : MonoBehaviour
         } 
         else if (objectType == "MeteorChiquito")
         {
-            for (int i = 0; i < pooledMeteorChiquitos.Count; i++)
+            for (int i = 0; i < pooledSmallMeteors.Count; i++)
             {
-                if (!pooledMeteorChiquitos.Peek().activeSelf) // Comprobamos si el elemento está inactivo para saber si podemos utilizarlo
+                if (!pooledSmallMeteors.Peek().activeSelf) // Comprobamos si el elemento está inactivo para saber si podemos utilizarlo
                 {
-                    auxGO = pooledMeteorChiquitos.Dequeue();
-                    pooledMeteorChiquitos.Enqueue(auxGO);
+                    auxGO = pooledSmallMeteors.Dequeue();
+                    pooledSmallMeteors.Enqueue(auxGO);
                     return auxGO;
                 }
             }
