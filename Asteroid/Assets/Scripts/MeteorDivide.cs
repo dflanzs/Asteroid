@@ -13,7 +13,7 @@ public class MeteorDivide : MonoBehaviour
             meteorChiquitoPrefab1 = ObjectPooling.Instance.requestInstance("MeteorChiquito");
             meteorChiquitoPrefab2 = ObjectPooling.Instance.requestInstance("MeteorChiquito");
             
-            if(meteorChiquitoPrefab1 != null && meteorChiquitoPrefab2 != null /* && !meteorChiquitoPrefab1.Equals(meteorChiquitoPrefab1) */)
+            if(meteorChiquitoPrefab1 != null && meteorChiquitoPrefab2 != null)
             {
                 meteorChiquitoPrefab1.SetActive(true);
                 meteorChiquitoPrefab2.SetActive(true);
