@@ -61,6 +61,9 @@ Asteroid/*.aab
 Asteroid/*.unitypackage
 Asteroid/*.app
 
+# Compressed source files
+*.zip
+*.tar.gz
 
 # Crashlytics generated file
 Asteroid/crashlytics-build.properties
